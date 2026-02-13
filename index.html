@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For My Love 💖</title>
+    <title>Happy Valentine's 💖</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -21,14 +21,14 @@
         }
 
         button {
-            padding: 18px 35px;
-            font-size: 22px;
+            padding: 20px 40px;
+            font-size: 24px;
             border: none;
-            border-radius: 40px;
+            border-radius: 50px;
             background-color: #ff4d6d;
             color: white;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             transition: transform 0.3s, background-color 0.3s;
         }
 
@@ -40,7 +40,7 @@
         .message {
             opacity: 0;
             margin-top: 30px;
-            font-size: 28px;
+            font-size: 30px;
             font-weight: bold;
             color: #d00000;
             animation: fadeIn 2s forwards;
@@ -57,7 +57,7 @@
             to { opacity: 1; transform: translateY(0);}
         }
 
-        /* Optional: Falling hearts animation */
+        /* Floating hearts animation */
         .heart {
             position: absolute;
             font-size: 24px;
@@ -82,27 +82,27 @@
     </div>
 
     <div class="bouquet" id="flower">
-        <!-- Larger and more detailed cartoon bouquet using SVG -->
-        <svg width="250" height="300" viewBox="0 0 250 300">
+        <!-- Cartoon bouquet SVG with better styling -->
+        <svg width="300" height="350" viewBox="0 0 300 350">
             <!-- Stems -->
-            <line x1="125" y1="150" x2="105" y2="280" stroke="green" stroke-width="6"/>
-            <line x1="125" y1="150" x2="125" y2="280" stroke="green" stroke-width="6"/>
-            <line x1="125" y1="150" x2="145" y2="280" stroke="green" stroke-width="6"/>
+            <line x1="150" y1="180" x2="130" y2="320" stroke="green" stroke-width="6"/>
+            <line x1="150" y1="180" x2="150" y2="320" stroke="green" stroke-width="6"/>
+            <line x1="150" y1="180" x2="170" y2="320" stroke="green" stroke-width="6"/>
 
             <!-- Flowers -->
-            <circle cx="105" cy="130" r="25" fill="pink"/>
-            <circle cx="125" cy="110" r="25" fill="red"/>
-            <circle cx="145" cy="130" r="25" fill="hotpink"/>
-            <circle cx="125" cy="140" r="20" fill="purple"/>
+            <circle cx="130" cy="160" r="30" fill="pink"/>
+            <circle cx="150" cy="140" r="30" fill="red"/>
+            <circle cx="170" cy="160" r="30" fill="hotpink"/>
+            <circle cx="150" cy="170" r="25" fill="purple"/>
 
             <!-- Flower centers -->
-            <circle cx="105" cy="130" r="10" fill="yellow"/>
-            <circle cx="125" cy="110" r="10" fill="yellow"/>
-            <circle cx="145" cy="130" r="10" fill="yellow"/>
-            <circle cx="125" cy="140" r="8" fill="yellow"/>
+            <circle cx="130" cy="160" r="10" fill="yellow"/>
+            <circle cx="150" cy="140" r="10" fill="yellow"/>
+            <circle cx="170" cy="160" r="10" fill="yellow"/>
+            <circle cx="150" cy="170" r="8" fill="yellow"/>
 
             <!-- Ribbon -->
-            <polygon points="110,280 140,280 130,320 120,320" fill="#ff4d6d"/>
+            <polygon points="140,320 160,320 155,360 145,360" fill="#ff4d6d"/>
         </svg>
     </div>
 </div>
@@ -112,14 +112,18 @@ function showLove() {
     // Hide button
     document.getElementById("clickMeBtn").style.display = "none";
 
-    // Show message
-    document.getElementById("loveMessage").style.display = "block";
+    // Show message with fade-in
+    const message = document.getElementById("loveMessage");
+    message.style.display = "block";
+    message.style.animation = "fadeIn 2s forwards";
 
-    // Show bouquet
-    document.getElementById("flower").style.display = "block";
+    // Show bouquet with fade-in
+    const flower = document.getElementById("flower");
+    flower.style.display = "block";
+    flower.style.animation = "fadeIn 2.5s forwards";
 
-    // Optional: add floating hearts
-    for(let i=0;i<10;i++){
+    // Add floating hearts
+    for(let i=0;i<15;i++){
         let heart = document.createElement('div');
         heart.classList.add('heart');
         heart.style.left = Math.random()*100 + 'vw';
@@ -129,7 +133,6 @@ function showLove() {
     }
 }
 
-// Attach event
 document.getElementById("clickMeBtn").addEventListener('click', showLove);
 </script>
 

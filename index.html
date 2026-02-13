@@ -1,139 +1,174 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Happy Valentine's 💖</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            text-align: center;
-            overflow: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentine's 💖</title>
 
-        .container {
-            padding: 20px;
-        }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  overflow: hidden;
+}
 
-        button {
-            padding: 20px 40px;
-            font-size: 24px;
-            border: none;
-            border-radius: 50px;
-            background-color: #ff4d6d;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s, background-color 0.3s;
-        }
+.container {
+  text-align: center;
+  padding: 20px;
+}
 
-        button:hover {
-            transform: scale(1.1);
-            background-color: #ff1a4d;
-        }
+button {
+  padding: 16px 36px;
+  font-size: 22px;
+  border: none;
+  border-radius: 50px;
+  background: #ff2f68;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  animation: pulse 1.5s infinite;
+}
 
-        .message {
-            opacity: 0;
-            margin-top: 30px;
-            font-size: 28px;
-            font-weight: bold;
-            color: #d00000;
-            animation: fadeIn 2s forwards;
-        }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
 
-        .bouquet {
-            opacity: 0;
-            margin-top: 30px;
-            animation: fadeIn 2.5s forwards;
-        }
+.message {
+  display: none;
+  margin-top: 20px;
+  font-size: 24px;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  animation: fadeIn 2s ease forwards;
+  white-space: pre-line;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px);}
-            to { opacity: 1; transform: translateY(0);}
-        }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-        .heart {
-            position: absolute;
-            font-size: 24px;
-            animation: floatUp 4s linear infinite;
-        }
+/* Bouquet */
+.bouquet {
+  display: none;
+  margin: 20px auto;
+  width: 200px;
+  animation: floatUp 2s ease forwards;
+}
 
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0.8); opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { transform: translateY(-50px) scale(1); opacity: 0; }
-        }
-    </style>
+@keyframes floatUp {
+  from { transform: translateY(60px) scale(0.7); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.flowers {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.flower {
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #ffd6e0 30%, #ff3e6c 70%);
+  border-radius: 50%;
+  position: relative;
+}
+
+.flower::before,
+.flower::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #ffd6e0 30%, #ff3e6c 70%);
+  border-radius: 50%;
+}
+
+.flower::before {
+  top: -25px;
+  left: 0;
+}
+
+.flower::after {
+  left: -25px;
+  top: 0;
+}
+
+.center {
+  width: 16px;
+  height: 16px;
+  background: #ffdd55;
+  border-radius: 50%;
+  position: absolute;
+  top: 17px;
+  left: 17px;
+}
+
+.stems {
+  margin-top: -10px;
+}
+
+.stem {
+  width: 6px;
+  height: 80px;
+  background: #2ecc71;
+  margin: auto;
+  border-radius: 3px;
+}
+
+/* Wrapper */
+.wrapper {
+  width: 0;
+  height: 0;
+  border-left: 90px solid transparent;
+  border-right: 90px solid transparent;
+  border-top: 120px solid #f5c1cc;
+  margin: -10px auto 0;
+}
+</style>
 </head>
+
 <body>
-
 <div class="container">
-    <button id="clickMeBtn">Click Me 💌</button>
 
-    <div class="message" id="loveMessage">
-        HAPPY VALENTINE'S BABYYY ❤️<br>
-        I LOVE U SO MUCH MAHAL KO 💖
+  <button id="btn" onclick="showLove()">Click Me 💝</button>
+
+  <div class="bouquet" id="bouquet">
+    <div class="flowers">
+      <div class="flower"><div class="center"></div></div>
+      <div class="flower"><div class="center"></div></div>
+      <div class="flower"><div class="center"></div></div>
     </div>
 
-    <div class="bouquet" id="flower">
-        <!-- Animated cartoon bouquet SVG -->
-        <svg width="300" height="350" viewBox="0 0 300 350">
-            <!-- Stems -->
-            <line x1="150" y1="180" x2="130" y2="320" stroke="green" stroke-width="6"/>
-            <line x1="150" y1="180" x2="150" y2="320" stroke="green" stroke-width="6"/>
-            <line x1="150" y1="180" x2="170" y2="320" stroke="green" stroke-width="6"/>
-
-            <!-- Flowers -->
-            <circle cx="130" cy="160" r="30" fill="pink"/>
-            <circle cx="150" cy="140" r="30" fill="red"/>
-            <circle cx="170" cy="160" r="30" fill="hotpink"/>
-            <circle cx="150" cy="170" r="25" fill="purple"/>
-
-            <!-- Flower centers -->
-            <circle cx="130" cy="160" r="10" fill="yellow"/>
-            <circle cx="150" cy="140" r="10" fill="yellow"/>
-            <circle cx="170" cy="160" r="10" fill="yellow"/>
-            <circle cx="150" cy="170" r="8" fill="yellow"/>
-
-            <!-- Ribbon -->
-            <polygon points="140,320 160,320 155,360 145,360" fill="#ff4d6d"/>
-        </svg>
+    <div class="stems">
+      <div class="stem"></div>
     </div>
+
+    <div class="wrapper"></div>
+  </div>
+
+  <div class="message" id="msg">
+HAPPY VALENTINE'S BABYYY 💖  
+I LOVE U SO MUCH  
+MAHAL KO 🌹
+  </div>
+
 </div>
 
 <script>
 function showLove() {
-    // Hide button
-    document.getElementById("clickMeBtn").style.display = "none";
-
-    // Show message with fade-in
-    const message = document.getElementById("loveMessage");
-    message.style.display = "block";
-    message.style.animation = "fadeIn 2s forwards";
-
-    // Show bouquet with fade-in
-    const flower = document.getElementById("flower");
-    flower.style.display = "block";
-    flower.style.animation = "fadeIn 2.5s forwards";
-
-    // Add floating hearts
-    for(let i=0;i<15;i++){
-        let heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.left = Math.random()*100 + 'vw';
-        heart.style.animationDuration = 3 + Math.random()*3 + 's';
-        heart.innerText = '💖';
-        document.body.appendChild(heart);
-    }
+  document.getElementById("btn").style.display = "none";
+  document.getElementById("bouquet").style.display = "block";
+  document.getElementById("msg").style.display = "block";
 }
-
-// Attach event to button
-document.getElementById("clickMeBtn").addEventListener('click', showLove);
 </script>
 
 </body>

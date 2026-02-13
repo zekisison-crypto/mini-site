@@ -40,7 +40,7 @@
         .message {
             opacity: 0;
             margin-top: 30px;
-            font-size: 30px;
+            font-size: 28px;
             font-weight: bold;
             color: #d00000;
             animation: fadeIn 2s forwards;
@@ -57,7 +57,6 @@
             to { opacity: 1; transform: translateY(0);}
         }
 
-        /* Floating hearts animation */
         .heart {
             position: absolute;
             font-size: 24px;
@@ -82,7 +81,7 @@
     </div>
 
     <div class="bouquet" id="flower">
-        <!-- Cartoon bouquet SVG with better styling -->
+        <!-- Animated cartoon bouquet SVG -->
         <svg width="300" height="350" viewBox="0 0 300 350">
             <!-- Stems -->
             <line x1="150" y1="180" x2="130" y2="320" stroke="green" stroke-width="6"/>
@@ -133,6 +132,7 @@ function showLove() {
     }
 }
 
+// Attach event to button
 document.getElementById("clickMeBtn").addEventListener('click', showLove);
 </script>
 

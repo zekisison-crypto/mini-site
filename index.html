@@ -11,8 +11,9 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            font-family: Arial, sans-serif;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
+            overflow: hidden;
         }
 
         .container {
@@ -20,38 +21,60 @@
         }
 
         button {
-            padding: 15px 30px;
-            font-size: 20px;
+            padding: 18px 35px;
+            font-size: 22px;
             border: none;
-            border-radius: 30px;
+            border-radius: 40px;
             background-color: #ff4d6d;
             color: white;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s, background-color 0.3s;
         }
 
         button:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            background-color: #ff1a4d;
         }
 
         .message {
-            display: none;
-            margin-top: 20px;
-            font-size: 24px;
+            opacity: 0;
+            margin-top: 30px;
+            font-size: 28px;
             font-weight: bold;
             color: #d00000;
+            animation: fadeIn 2s forwards;
         }
 
         .bouquet {
-            display: none;
-            margin-top: 20px;
+            opacity: 0;
+            margin-top: 30px;
+            animation: fadeIn 2.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* Optional: Falling hearts animation */
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            animation: floatUp 4s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.8); opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-50px) scale(1); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <button onclick="showLove()">Click Me 💌</button>
+    <button id="clickMeBtn">Click Me 💌</button>
 
     <div class="message" id="loveMessage">
         HAPPY VALENTINE'S BABYYY ❤️<br>
@@ -59,34 +82,55 @@
     </div>
 
     <div class="bouquet" id="flower">
-        <!-- Simple Cartoon Bouquet using SVG -->
-        <svg width="200" height="250" viewBox="0 0 200 250">
+        <!-- Larger and more detailed cartoon bouquet using SVG -->
+        <svg width="250" height="300" viewBox="0 0 250 300">
             <!-- Stems -->
-            <line x1="100" y1="120" x2="80" y2="200" stroke="green" stroke-width="5"/>
-            <line x1="100" y1="120" x2="100" y2="200" stroke="green" stroke-width="5"/>
-            <line x1="100" y1="120" x2="120" y2="200" stroke="green" stroke-width="5"/>
+            <line x1="125" y1="150" x2="105" y2="280" stroke="green" stroke-width="6"/>
+            <line x1="125" y1="150" x2="125" y2="280" stroke="green" stroke-width="6"/>
+            <line x1="125" y1="150" x2="145" y2="280" stroke="green" stroke-width="6"/>
 
             <!-- Flowers -->
-            <circle cx="80" cy="100" r="20" fill="pink"/>
-            <circle cx="100" cy="90" r="20" fill="red"/>
-            <circle cx="120" cy="100" r="20" fill="hotpink"/>
+            <circle cx="105" cy="130" r="25" fill="pink"/>
+            <circle cx="125" cy="110" r="25" fill="red"/>
+            <circle cx="145" cy="130" r="25" fill="hotpink"/>
+            <circle cx="125" cy="140" r="20" fill="purple"/>
 
             <!-- Flower centers -->
-            <circle cx="80" cy="100" r="8" fill="yellow"/>
-            <circle cx="100" cy="90" r="8" fill="yellow"/>
-            <circle cx="120" cy="100" r="8" fill="yellow"/>
+            <circle cx="105" cy="130" r="10" fill="yellow"/>
+            <circle cx="125" cy="110" r="10" fill="yellow"/>
+            <circle cx="145" cy="130" r="10" fill="yellow"/>
+            <circle cx="125" cy="140" r="8" fill="yellow"/>
 
             <!-- Ribbon -->
-            <polygon points="70,200 130,200 110,240 90,240" fill="#ff4d6d"/>
+            <polygon points="110,280 140,280 130,320 120,320" fill="#ff4d6d"/>
         </svg>
     </div>
 </div>
 
 <script>
 function showLove() {
+    // Hide button
+    document.getElementById("clickMeBtn").style.display = "none";
+
+    // Show message
     document.getElementById("loveMessage").style.display = "block";
+
+    // Show bouquet
     document.getElementById("flower").style.display = "block";
+
+    // Optional: add floating hearts
+    for(let i=0;i<10;i++){
+        let heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random()*100 + 'vw';
+        heart.style.animationDuration = 3 + Math.random()*3 + 's';
+        heart.innerText = '💖';
+        document.body.appendChild(heart);
+    }
 }
+
+// Attach event
+document.getElementById("clickMeBtn").addEventListener('click', showLove);
 </script>
 
 </body>
